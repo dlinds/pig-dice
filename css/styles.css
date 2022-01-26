@@ -19,6 +19,9 @@ img {
 .active {
   background: #d1faff;
 }
+.winner {
+  background: red;
+}
 
 .hidden {
   display: none;
