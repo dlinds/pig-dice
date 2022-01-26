@@ -40,3 +40,27 @@ function scoreKeeper(roll) {
 }
 
 // UI Logic
+
+function scoreRefresh() {
+
+  let scoreDisplay1 = $("#player-1-score");
+  let scoreDisplay2 = $("#player-2-score");
+  let turnDisplay = $("#current-turn-total");
+
+  scoreDisplay1.text(player1.score);
+  scoreDisplay2.text(player2.score);
+  turnDisplay.text(thisTurnScore);
+}
+
+$(document).ready(function() {
+  scoreRefresh();
+  $("#dice-img").click(function() {
+    scoreRefresh;
+  });
+  $("#stop-turn").click(function() {
+    scoreRefresh()
+  });
+  $("#restart").click(function() {
+    scoreRefresh();
+  });
+})

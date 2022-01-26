@@ -17,10 +17,10 @@ Daniel Lindsey | [LinkedIn](https://www.linkedin.com/in/dlinds/) | [email](mailt
 To view this webpage:
 
 1. Ensure that you have the most recent version of Git installed. [Instructions can be found here.](https://github.com/git-guides/install-git) 
-1. Clone this repository to your local machine using the Terminal or Bash command `git clone https://github.com/meilar/CHANGE_ME.git`.
+1. Clone this repository to your local machine using the Terminal or Bash command `git clone https://github.com/meilar/dice-game.git`.
 2. Open "index.html" in a CSS3 and HTML5-compliant browser such as Google Chrome, Mozilla Firefox, or Apple Safari.
 
-[Alternately, a hosted version of this pages is available to view on Github Pages.](https://meilar.github.io/CHANGE_ME)
+[Alternately, a hosted version of this pages is available to view on Github Pages.](https://meilar.github.io/dice-game)
 
 ## Technologies Used
 
