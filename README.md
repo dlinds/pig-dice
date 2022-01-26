@@ -42,14 +42,19 @@ The following software tools were used to develop this page:
 ## Tests
 
 #### Describe rollDice()  
-
 Test: "It should return a number between 1 and 6"  
+Code: `rollDice()`
+Result: `1...2...3...4...5...6`
 
-Code: 
-rollDice()
+#### Describe scoreKeeper(roll, player)  
+Test: "It should add roll amount to player's score."  
+Code: `scoreKeeper(6, 1)`
+Result: `Player 1 Score is 6 Player 2 score is 0`
 
-Result: 1...2...3...4...5...6
-
+#### Describe changeActivePlayer()  
+Test: "It should change both player's isTurn booleans."  
+Code: `changeActivePlayer()`
+Result: `player1.isTurn = false; player2.isTurn = true
 
 
 ## License 

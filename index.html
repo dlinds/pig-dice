@@ -11,7 +11,60 @@
 </head>
 <body>
   <div class="container">
-    <h1>Starting Template</h1>
+    <div class="row">
+      <div class="col-lg-3 game-tiles">
+        <div class="card">
+          <div class="card-title">
+            <h1 class="heading-1 game-tiles">
+              Player 1
+            </h1>
+          </div>
+          <div class="card-body">
+            <h3 class="heading-3">
+              Score: <span id="player-1-score">0</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 game-tiles">
+        <div class="card">
+          <div class="card-title">
+            <h1 class="heading-1 game-tiles">
+              Roll the dice!
+            </h1>
+          </div>
+          <div class="card-body">
+            <img src="https://atlas-content1-cdn.pixelsquid.com/assets_v2/190/1900708295316871047/jpeg-600/G03.jpg" alt="Photo of a dice">
+            <br><br>
+            <h3 class="heading-3">
+              Current Turn Total:
+            </h3>
+              <hr>
+            <h1 class="heading-1">
+              <span id="current-turn-total">0</span>
+            </h1>
+            <div class="btn btn-dark" id="stop-turn">
+              END TURN
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 game-tiles">
+        <div class="card">
+          <div class="card-title">
+            <h1 class="heading-1 game-tiles">
+              Player 2
+            </h1>
+          </div>
+          <div class="card-body">
+            <h3 class="heading-3">
+              Score: <span id="player-2-score">0</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -5,23 +5,38 @@ function rollDice() {
     return num + 1;
 }
 
-rollDice()
+//rollDice()
 
 function Player(id) {
   this.score = 0;
-  this.id = id
+  this.id = id;
+  this.isTurn = false;
+}
+
+
+function changeActivePlayer() {
+  if (player1.isTurn === true) {
+    player1.isTurn = false;
+    player2.isTurn = true;
+  } else if (player2.isTurn = true) {
+    player2.isTurn = false;
+    player1.isTurn = true;
+  }
 }
 
 let player1 = new Player(1);
+player1.isTurn = true;
 let player2 = new Player(2);
+let thisTurnScore = 0;
 
-function scoreKeeper(roll, playerId) {
-  if (playerId === 1) {
-    player1.score = player1.score + roll;
+function scoreKeeper(roll) {
+  if (roll === 1) {
+    thisTurnScore = 0;
+    changeActivePlayer();
   } else {
-    player2.score = player2.score + roll; 
+    thisTurnScore = thisTurnScore + roll;
   }
-  console.log("Player 1 Score is " + player1.score + " " + "Player 2 score is " + player2.score );
+  return thisTurnScore;
 }
 
 // UI Logic
