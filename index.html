@@ -10,7 +10,39 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="start-board">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="heading-3" id="start-card">How many dice do you want to play with?</h3>
+        <div class="row">
+          <div class="col-lg-2">
+
+          </div>
+          <div class="col-lg-4">
+            <input type=checkbox name="play-1-dice" id="play-1-dice" class="dice-cnt-select">
+            <label for="play-1-dice" id="play-1-dice-img"></label>
+          </div>
+          <div class="col-lg-4">
+            <input type=checkbox name="play-2-dice" id="play-2-dice" class="dice-cnt-select">
+            <label for="play-2-dice" id="play-2-dice-img"></label>
+          </div>
+          <div class="col-lg-2">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row start-button-row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="btn btn-dark hidden" id="play-game">
+          Play!
+        </div> 
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+  <div class="container hidden" id="game-board">
     <div class="row">
       <div class="col-lg-3 game-tiles">
         <div class="card active" id="card-1">
@@ -28,10 +60,21 @@
       <div class="col-lg-6 game-tiles">
         <div class="card" id="card-dice">
           <div class="card-title">
-            <h1 class="heading-1 game-tiles">Roll the dice!</h1>
+            <h1 class="heading-1 game-tiles">Play the game!</h1>
+            <div>
+              <button class="btn btn-dark hidden" id="roll-both-dice">Roll both dice</button>
+            </div>
           </div>
           <div class="card-body">
-            <img id="dice-img" src="https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_5-512.png" alt="Photo of a dice">
+            <div class="card hidden" id="tough-luck">
+              <div class="card-body">
+                <h4 class="heading-4">Tough Luck! You rolled a 1</h4>
+                <h3 class="heading-3">Player Switch!</h4>
+              </div>
+            </div>
+            <div id="dice-container">
+              <img id="dice-img" src="https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png" alt="Photo of a dice">
+            </div>
             <br><br>
             <h3 class="heading-3">
               Current Turn Total:
@@ -39,13 +82,11 @@
               <hr>
             <h1 class="heading-1">
               <span id="current-turn-total"></span>
+              <p id="current-turn-added"><br></p>
             </h1>
             <div class="btn btn-dark" id="stop-turn">
               END TURN
             </div>
-            <div class="btn btn-danger hidden" id="restart">
-              NEW GAME
-            </div>  
           </div>
         </div>
       </div>
@@ -61,6 +102,20 @@
             </h3>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="container hidden" id="result-board">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="heading-1" id="winner-card">Player 1 Wins!</h1>
+      </div>
+    </div>
+    <div class="row reset-button-row">
+      <div class="col-lg-12">
+        <div class="btn btn-danger" id="restart">
+          NEW GAME
+        </div> 
       </div>
     </div>
   </div>

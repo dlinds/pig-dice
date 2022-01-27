@@ -11,18 +11,81 @@ img {
   margin-top: 25px;
 }
 
-#stop-turn {
+#stop-turn, #result-board, #play-game, #roll-both-dice {
   margin-top: 30px;
   min-width: 40%;
+}
+#result-board {
+  padding: 30px;
+  margin-top: 30px;
+  max-width: 60%;
+  min-height: 300px;
+  background: #ffb3b3;
+  text-align: center;
+}
+
+#start-board {
+  padding: 30px;
+  margin-top: 30px;
+  max-width: 60%;
+  min-height: 300px;
+  background: #d1faff;
+  text-align: center;
+}
+
+#start-card {
+  margin-bottom: 100px;
 }
 
 .active {
   background: #d1faff;
 }
-.winner {
-  background: red;
+#tough-luck {
+  background: #ffb3b3;
 }
 
 .hidden {
   display: none;
+}
+
+
+.reset-button-row {
+  margin-top: 150px;
+}
+.start-button-row {
+  margin-top: 50px;
+}
+
+#current-turn-added {
+  font-size: 2.0rem;
+  color: #959595;
+}
+
+input[type=checkbox] {
+  display:none;
+}
+
+input#play-1-dice[type=checkbox] + label
+{
+  background-image: url("https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png");
+  min-height: 150px;
+  border-radius: 15px;
+  width: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  
+}
+
+input#play-2-dice[type=checkbox] + label
+{
+  background-image: url("https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_2-512.png");
+  min-height: 150px;
+  width: 150px;
+  
+  border-radius: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  
 }

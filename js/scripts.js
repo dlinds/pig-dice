@@ -1,14 +1,23 @@
 //Business Logic
+function Game() {
+  this.players = {};
+  this.currentId = 0;
+}
+Game.prototype.addPlayer = function () {
+  this.currentId += 1;
+  return this.currentId;
+}
 
 function rollDice() {
     const num =  Math.floor(Math.random() * 6);
     return num + 1;
 }
 
-function Player(id) {
+function Player(id, name) {
   this.score = 0;
   this.id = id;
   this.isTurn = false;
+  this.name = name;
 }
 
 
@@ -24,8 +33,10 @@ function changeActivePlayer() {
 
 let player1 = new Player(1);
 player1.isTurn = true;
+let playerGame = new Game();
 let player2 = new Player(2);
 let thisTurnScore = 0;
+// player1.score = 98;
 
 function scoreKeeper(roll) {
   if (roll === 1) {
@@ -53,19 +64,13 @@ function checkForFinish() {
   let score2 = player2.score;
 
   if (score1 >= 100) {
-    $("#card-1").addClass("winner");
-    $("#card-1").removeClass("active");
-    $("#stop-turn").addClass("hidden");
-    $("#restart").removeClass("hidden");
-    $("#player-1-win").removeClass("hidden");
-    $("#player-1-name").addClass("hidden");
+    $("#game-board").slideUp(1000);
+    $("#result-board").slideDown(1000);
+    $("#winner-card").text("Player 1 Wins!");
   } else if (score2 >= 100) {
-    $("#card-2").addClass("winner");
-    $("#card-2").removeClass("active");
-    $("#stop-turn").addClass("hidden");
-    $("#restart").removeClass("hidden");
-    $("#player-2-win").removeClass("hidden");
-    $("#player-2-name").addClass("hidden");
+    $("#game-board").slideUp(1000);
+    $("#result-board").slideDown(1000);
+    $("#winner-card").text("Player 2 Wins!");
   }
 }
 
@@ -73,12 +78,10 @@ function turnRefresh() {
   if (player2.isTurn === true) {
     $("#card-2").addClass("active");
     $("#card-1").removeClass("active"); 
-    console.log(2); 
   }
   if (player1.isTurn === true) {
     $("#card-1").addClass("active");
     $("#card-2").removeClass("active");
-    console.log(1);  
   }
 }
 
@@ -94,18 +97,71 @@ function scoreRefresh() {
   
 }
 
+function attachContactListenersForDiceImgs(id) {
+  let diceImgID = "#dice-img-" + id
+  $(diceImgID).on("click", function () {
+    let thisTurn = rollDice();
+    $(diceImgID).attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_" + thisTurn + "-256.png")
+    if (scoreKeeper(thisTurn) === 0) {
+      $("#current-turn-added").hide();
+      $("#dice-container").slideUp(500, function () {
+        $("#tough-luck").slideDown(500, function () {
+          $("#tough-luck").slideUp(2000);
+          $("#dice-container").slideDown(2000);
+        });
+      });
+      $("#dice-img-1").attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-256.png");
+      $("#dice-img-2").attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-256.png");
+    } else {
+      
+      $("#current-turn-added").fadeIn(250);
+      $("#current-turn-added").text(" +" + thisTurn);
+      $("#current-turn-added").fadeOut(500);
+    }
+
+    scoreRefresh();
+    turnRefresh();
+  })
+}
 
 
 $(document).ready(function() {
   scoreRefresh();
-  $("#dice-img").click(function() {
-    let thisTurn = rollDice();
-    $("#dice-img").attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_"+ thisTurn + "-512.png")
-    scoreKeeper(thisTurn);
-    scoreRefresh();
-    turnRefresh();
+  let diceAmount;
+  $("label#play-1-dice-img").click(function() {
+    $("#play-1-dice-img").css("box-shadow","rgb(0 0 0) 0px 0px 24px");
+    $("#play-1-dice-img").css("background-color","#fff");
+    $("#play-2-dice-img").css("box-shadow","rgb(0 0 0 / 55%) 0px 0px 0px");
+    $("#play-2-dice-img").css("background-color","#d1faff");
+    $("#dice-container").html("<img id=\"dice-img-1\" src=\"https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-256.png\" alt=\"Photo of a dice\">");
+    attachContactListenersForDiceImgs(1)
+    $("#play-game").slideDown(200);
+    diceAmount = 1;
   });
+  $("label#play-2-dice-img").click(function() {
+    $("#play-2-dice-img").css("box-shadow","rgb(0 0 0) 0px 0px 24px");
+    $("#play-2-dice-img").css("background-color","#fff");
+    $("#play-1-dice-img").css("box-shadow","rgb(0 0 0 / 55%) 0px 0px 0px");
+    $("#play-1-dice-img").css("background-color","#d1faff");
+    $("#dice-container").html("<img id=\"dice-img-1\" src=\"https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-256.png\" alt=\"Photo of a dice\"><img id=\"dice-img-2\" src=\"https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-256.png\" alt=\"Photo of a dice\">");
+    attachContactListenersForDiceImgs(1);
+    attachContactListenersForDiceImgs(2);
+    $("#play-game").slideDown(200);
+    diceAmount = 2;
+  });
+
+  $("#play-game").click(function () {
+    $("#start-board").hide(500, function () {
+      $("#game-board").slideDown(1000);
+      let playerGame = new Game();
+      playerGame.diceCount = diceAmount;
+      
+    });
+  });
+
   $("#stop-turn").click(function() {
+    $("#dice-img-1").attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png");
+    $("#dice-img-2").attr("src","https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png")
     addScore();
     changeActivePlayer();
     checkForFinish();
